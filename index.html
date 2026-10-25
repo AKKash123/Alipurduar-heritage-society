@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alipurduar Heritage Society – Digital Museum</title>
+<meta name="Alipurduar Heritage Society" content="#144336">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='47' fill='%23144336'/><circle cx='50' cy='50' r='40' fill='%23f4f0e6'/><path d='M16 74 30 54 40 60 54 40 70 58 84 74Z' fill='%232d6353'/><rect x='40' y='48' width='20' height='20' fill='%23f4f0e6' stroke='%23144336' stroke-width='3'/><rect x='42' y='42' width='5' height='7' fill='%23144336'/><rect x='53' y='42' width='5' height='7' fill='%23144336'/><path d='M20 78h60' stroke='%23e5a73b' stroke-width='6' stroke-linecap='round'/></svg>">
+<link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='47' fill='%23144336'/><circle cx='50' cy='50' r='40' fill='%23f4f0e6'/><path d='M16 74 30 54 40 60 54 40 70 58 84 74Z' fill='%232d6353'/><rect x='40' y='48' width='20' height='20' fill='%23f4f0e6' stroke='%23144336' stroke-width='3'/><rect x='42' y='42' width='5' height='7' fill='%23144336'/><rect x='53' y='42' width='5' height='7' fill='%23144336'/><path d='M20 78h60' stroke='%23e5a73b' stroke-width='6' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://commons.wikimedia.org">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--g:#144336;--g2:#0d2d24;--gold:#e5a73b;--bg:#f7f4ed;--card:#fff;--ink:#1b2622;--mut:#5e6d66;--line:#e5ded4;--sand:#e5ded2;--cb:#b0562b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a16;--card:#18251f;--ink:#e8efeb;--mut:#9db2a8;--line:#2a3b33;--sand:#22332b;--cb:#e08a5c}}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.6 'Plus Jakarta Sans','Noto Serif Bengali','Noto Sans Devanagari',sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--g);z-index:60}
+a{color:inherit;text-decoration:none}button{cursor:pointer;border:0;background:none;font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:12px 28px;background:var(--card);border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:14px;align-items:center}
+.brand h1{font:700 18px/1.1 Cinzel,serif;color:var(--g);letter-spacing:.02em}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .brand h1{color:var(--gold)}}
+.brand p{font:italic 12px Lora,serif;color:var(--mut);margin-top:3px;max-width:46ch}
+.mnav{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;font-weight:500}
+.mnav a{padding:6px 2px}.mnav a:hover{color:var(--gold)}
+.mnav a.on{background:var(--g);color:#fff;padding:6px 16px;border-radius:6px}
+.lang{display:flex;border:1px solid var(--g);border-radius:6px;overflow:hidden}
+.lang button{padding:5px 12px;font-size:12.5px}.lang button[aria-pressed=true]{background:var(--g);color:#fff}
+.sub{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--g);color:#d1ded9;display:flex;align-items:center;gap:20px;padding:0 28px;height:48px;box-shadow:0 3px 12px rgba(0,0,0,.2);overflow-x:auto;scrollbar-width:none}
+.sub b{font:600 16px Lora,serif;color:#fff;white-space:nowrap;margin-right:8px}
+.sub a{font-size:12.5px;font-weight:500;white-space:nowrap;padding:14px 2px;border-bottom:2px solid transparent;transition:.2s}
+.sub a:hover{color:#fff}.sub a.on{color:var(--gold);border-color:var(--gold)}
+section{scroll-margin-top:60px}
+/* hero carousel */
+.hero{position:relative;height:clamp(430px,68vh,620px);overflow:hidden;background:#0b1a15;color:#fff;touch-action:pan-y}
+.sl{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;visibility:hidden}
+.sl.on{opacity:1;visibility:visible}
+.bg{position:absolute;inset:0;transform:scale(1.02)}
+.sl.on .bg{animation:kb 9s ease-out forwards}
+@keyframes kb{to{transform:scale(1.12) translateX(-1.2%)}}
+.bg svg{position:absolute;bottom:0;width:100%;height:60%}
+.sl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,20,15,.88),rgba(8,20,15,.3) 62%,rgba(8,20,15,.05)),linear-gradient(0deg,rgba(8,20,15,.55),transparent 40%)}
+.sl .tx{position:absolute;z-index:3;left:max(28px,6vw);right:20px;top:clamp(40px,14vh,120px);max-width:520px;opacity:0;transform:translateY(24px);transition:.8s .35s}
+.sl.on .tx{opacity:1;transform:none}
+.chipa{display:inline-block;padding:4px 12px;border:1px solid rgba(229,167,59,.65);border-radius:20px;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;background:rgba(8,20,15,.35)}
+.tx h2{font:700 clamp(32px,5.4vw,54px)/1.1 Lora,'Noto Serif Bengali','Noto Sans Devanagari',serif;color:#fff;margin:0 0 14px;text-shadow:0 2px 18px rgba(0,0,0,.4)}
+.tx p{max-width:440px;color:#e5ece8;margin-bottom:24px}
+.cta{display:inline-block;background:var(--gold);color:#11271f;padding:11px 24px;border-radius:26px;font-weight:700;font-size:13.5px;border:0}
+button.cta{cursor:pointer}.cta:hover{background:#f5b94e}
+.cta.g{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55);margin-left:8px}.cta.g:hover{background:rgba(255,255,255,.12)}
+.arr{position:absolute;top:50%;z-index:6;width:40px;height:40px;border-radius:50%;background:rgba(18,38,30,.6);border:1px solid rgba(255,255,255,.3);color:#fff;transform:translateY(-50%)}
+.arr:hover{border-color:var(--gold);color:var(--gold)}
+.dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:6;display:flex;gap:6px}
+.dots button{width:20px;height:4px;border-radius:2px;background:rgba(255,255,255,.35);overflow:hidden;position:relative;min-height:0}
+.dots button.on::after{content:"";position:absolute;inset:0;background:var(--gold);transform-origin:left;animation:pg 6s linear forwards}
+@keyframes pg{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.cnt{position:absolute;z-index:6;right:max(28px,4vw);bottom:16px;color:#e5ece8;font:600 13px Lora,serif;letter-spacing:.12em}
+.cnt b{color:var(--gold);font-size:18px}
+/* layout */
+.wrap{max-width:1280px;margin:0 auto;padding:54px 24px 8px}
+.st{font:700 28px/1.2 Lora,'Noto Serif Bengali','Noto Sans Devanagari',serif}
+.st::after{content:"";display:block;width:44px;height:3px;background:var(--g);margin:8px 0 18px}
+.lead{max-width:70ch;color:var(--mut);margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:.25s}
+.c:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(20,67,54,.14)}
+.k{display:block;width:100%;text-align:left}
+.c .im{height:140px}.c .bd{padding:14px}
+.c h4{font:700 15px Lora,'Noto Serif Bengali','Noto Sans Devanagari',serif}
+.c p{font-size:12.5px;color:var(--mut);margin-top:4px}
+/* map */
+.mapbox{display:grid;grid-template-columns:2fr 1fr;gap:18px;align-items:start}
+.map{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.map svg{display:block;width:100%;height:auto}
+.pin{cursor:pointer}.pin circle{transition:.2s}.pin:hover circle,.pin.on circle{fill:var(--gold);r:9}
+.pin text{font:600 11px 'Plus Jakarta Sans','Noto Serif Bengali','Noto Sans Devanagari',sans-serif;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:3px}
+.zoom{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:4px}
+.zoom button{width:32px;height:32px;background:var(--g);color:#fff;border-radius:6px;font-size:18px}
+.legend{font-size:12.5px;color:var(--mut);margin-top:10px}
+.info{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.info h3{font:700 20px Lora,'Noto Serif Bengali','Noto Sans Devanagari',serif;margin-bottom:6px}
+.dthumb{height:130px;position:relative;border-radius:8px;overflow:hidden;margin-bottom:12px}
+.plist{margin-top:18px;border-top:1px solid var(--line);padding-top:12px;max-height:260px;overflow:auto}
+.plist h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+.pi{display:block;width:100%;text-align:left;padding:7px 10px;border-radius:6px;font-size:13px;border-left:3px solid transparent;min-height:0}
+.pi:hover{background:var(--bg)}.pi.on{background:var(--bg);border-color:var(--gold);font-weight:600}
+.btn{display:inline-block;margin-top:14px;background:var(--g);color:#fff;padding:9px 18px;border-radius:20px;font-size:13px;font-weight:600}
+.tl{border-left:3px solid var(--g);margin:24px 0 0 8px;padding-left:20px;display:grid;gap:14px}
+.tl b{color:var(--gold);font-family:Lora,serif}
+.cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+form{display:grid;gap:10px;max-width:520px}
+input,textarea{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+footer{margin-top:60px;background:var(--g2);color:#c9dbd3;padding:18px 28px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-size:12.5px}
+/* modal */
+.mod{position:fixed;inset:0;z-index:100;background:rgba(5,15,11,.75);display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:30px 14px}
+.mod.on{display:flex}
+.art{background:var(--card);width:100%;max-width:720px;border-radius:12px;padding:30px clamp(18px,5vw,48px) 40px}
+.art h2{font:700 30px/1.25 Lora,'Noto Serif Bengali','Noto Sans Devanagari',serif;margin:6px 0 4px}
+.art .body p{font:400 var(--fs,18px)/1.85 Lora,'Noto Serif Bengali','Noto Sans Devanagari',serif;margin-top:16px;max-width:62ch}
+.art .bar{display:flex;gap:6px;justify-content:space-between;align-items:center;color:var(--mut);font-size:13px}
+.art .bar button{border:1px solid var(--line);border-radius:6px;padding:4px 10px}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.chips button{padding:6px 16px;border:1px solid var(--g);border-radius:20px;font-size:13px}.chips button[aria-pressed=true]{background:var(--g);color:#fff}
+.gi{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:.25s}.gi:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(20,67,54,.14)}
+.ph{position:relative;height:150px;overflow:hidden}.ph img,.big img,.dthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.gi span{display:block;padding:10px 12px;font:700 14px Lora,'Noto Serif Bengali','Noto Sans Devanagari',serif}
+.big{position:relative;height:300px;border-radius:10px;overflow:hidden;margin:14px 0}
+.pl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 4px;padding:12px;background:var(--bg);border-radius:10px;font-size:13px}.pl .btn{margin:0}.pl select{padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}#vn{color:#b0562b;flex-basis:100%}.rd{background:rgba(229,167,59,.28);border-radius:6px;box-shadow:0 0 0 6px rgba(229,167,59,.28)}
+/* skeleton loader */
+.sk{background:var(--sand)}
+.sk::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-100%);animation:shim 1.3s infinite;pointer-events:none}
+.sk.ok::before{display:none}
+@keyframes shim{to{transform:translateX(100%)}}
+.ph img,.big img,.im img,.bg img,.dthumb img{opacity:0;transition:opacity .5s}
+.ph img.l,.big img.l,.im img.l,.bg img.l,.dthumb img.l{opacity:1}
+.im{position:relative;overflow:hidden}
+.im img,.bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media(max-width:860px){.mapbox{grid-template-columns:1fr}.sign{display:none}.top{padding:12px 16px}.sub{padding:0 16px}}
+/* responsive */
+img,svg{max-width:100%}body{overflow-x:clip;font-size:clamp(14px,.35vw + 13px,16px)}
+.menu{display:none;width:44px;height:44px;border:1px solid var(--g);border-radius:8px;font-size:22px;color:var(--g)}
+.pin .hit,.pin:hover .hit,.pin.on .hit{fill:transparent;r:26px}
+.btn,.chips button,.zoom button,.arr{min-height:40px}input,textarea{font-size:16px}form{max-width:100%}
+@media(hover:none){.c:hover,.gi:hover{transform:none;box-shadow:none}}
+@media(min-width:1600px){.wrap{max-width:1500px}.grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}}
+@media(max-width:1100px){.mnav{gap:4px 12px;font-size:13px}.top{padding:10px 20px}}
+@media(max-width:900px){.lang{order:2;margin-left:auto}.menu{display:grid;place-items:center;order:2}.mnav{display:none;order:3;flex-basis:100%;flex-direction:column;gap:0;border-top:1px solid var(--line);padding-top:6px}.mnav.open{display:flex}.mnav a{padding:12px 6px;min-height:44px}.mnav a.on{padding:12px 14px}.brand{flex:1 1 220px}}
+@media(max-width:640px){
+.top{padding:10px 14px;gap:8px}.brand h1{font-size:15px}.brand p{display:none}.brand svg{width:44px;height:44px}
+.sub{height:46px;padding:0 12px;gap:16px}.sub b{display:none}
+.wrap{padding:28px 14px 4px}.st{font-size:23px}.st::after{margin:6px 0 14px}
+.grid{grid-template-columns:repeat(2,1fr);gap:12px}.cols{grid-template-columns:1fr}.ph{height:110px}.c .im{height:100px}.c .bd{padding:10px}.c h4{font-size:14px}
+.hero{height:clamp(400px,66vh,520px)}.sl::after{background:linear-gradient(0deg,rgba(8,20,15,.92),rgba(8,20,15,.5) 60%,rgba(8,20,15,.15))}.sl .tx{top:auto;bottom:56px;left:18px}.tx p{font-size:14px;margin-bottom:16px}.tx h2{font-size:clamp(28px,9vw,40px);margin-bottom:10px}.arr{display:none}.cta{padding:12px 20px}.cta.g{display:none}
+.dots{gap:4px;bottom:22px;left:18px;transform:none}.dots button{width:12px}.cnt{bottom:14px;right:16px}
+.bg svg{height:70%}
+.pin circle{r:10px}.pin:hover circle,.pin.on circle{r:13px}.pin text{display:none;font-size:22px;stroke-width:6px}.pin.on text{display:block}.pin .hit,.pin:hover .hit,.pin.on .hit{r:34px}.zoom button{width:40px;height:40px}.info{padding:16px}
+.map svg>text{font-size:24px!important}
+.c .btn{display:block;width:100%;text-align:center;margin-top:8px;padding:9px 6px;font-size:12.5px}
+.mod{padding:0}.art{border-radius:0;min-height:100%;padding:16px 16px 36px}.art h2{font-size:24px}.art .bar button{padding:8px 12px}.big{height:220px}
+.pl .btn{padding:10px 16px}.pl{gap:8px}.lead{font-size:14px}
+.lang button{padding:7px 10px;font-size:12px}
+footer{flex-direction:column;align-items:center;text-align:center;padding:18px 14px}}
+@media(max-width:320px){.grid{grid-template-columns:1fr}}
+@media(max-height:480px) and (orientation:landscape){.hero{height:auto;min-height:100vh}.sl .tx{top:20px;bottom:auto}.tx h2{font-size:30px;margin:2px 0 8px}.tx p{display:none}.sub{position:static}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top" id="home">
+  <div class="brand">
+    <svg width="58" height="58" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" fill="#f4f0e6" stroke="#164336" stroke-width="3"/><path d="M22 66 32 52 40 56 52 42 66 55 78 66Z" fill="#2d6353"/><rect x="42" y="47" width="16" height="15" fill="#f4f0e6" stroke="#164336"/><rect x="44" y="43" width="3" height="4" fill="#164336"/><rect x="53" y="43" width="3" height="4" fill="#164336"/><rect x="31" y="76" width="38" height="11" rx="2" fill="#164336"/><text x="50" y="83.5" font-size="6" font-weight="700" fill="#fff" text-anchor="middle">AHS · 2018</text></svg>
+    <div><h1>ALIPURDUAR<br>HERITAGE SOCIETY</h1><p id="tag"></p></div>
+  </div>
+  <button class="menu" id="menu" aria-label="Menu" aria-expanded="false">☰</button>
+  <nav class="mnav" id="mnav" aria-label="Main"></nav>
+  <div class="lang" id="lang" role="group" aria-label="Language">
+    <button data-l="1">বাংলা</button><button data-l="2">हिन्दी</button><button data-l="0">English</button>
+  </div>
+</header>
+<nav class="sub" id="sub" aria-label="Digital Museum"></nav>
+<main id="app"></main>
+<footer><i>Our Heritage | Our Responsibility | Our Future</i><span id="fcred"></span><span>© 2026 Alipurduar Heritage Society</span></footer>
+<div class="mod" id="mod" role="dialog" aria-modal="true"><div class="art" id="art"></div></div>
+
+<script>
+// ---------- i18n: [English, বাংলা, हिन्दी] ----------
+const T={
+tag:["Preserving the History, Heritage and Collective Memory of Alipurduar","আলিপুরদুয়ারের ইতিহাস, ঐতিহ্য ও সম্মিলিত স্মৃতির সংরক্ষণ","अलीपुरद्वार के इतिहास, विरासत और सामूहिक स्मृति का संरक्षण"],
+explore:["Explore the collections","সংগ্রহ দেখুন","संग्रह देखें"],
+more:["View details","বিস্তারিত দেখুন","विवरण देखें"],
+read:["Read the article","প্রবন্ধ পড়ুন","लेख पढ़ें"],
+close:["Close","বন্ধ করুন","बंद करें"],
+showmap:["Show on map","মানচিত্রে দেখুন","मानचित्र पर देखें"],
+locs:["Locations","স্থানসমূহ","स्थान"],
+approx:["Map positions are approximate.","মানচিত্রের অবস্থান আনুমানিক।","मानचित्र पर स्थान अनुमानित हैं।"],
+cred:["Photographs: Wikimedia Commons. Each image keeps its own licence and credit.","আলোকচিত্র: উইকিমিডিয়া কমন্স। প্রতিটি ছবির নিজস্ব লাইসেন্স ও স্বীকৃতি আছে।","छायाचित्र: विकिमीडिया कॉमन्स। प्रत्येक चित्र का अपना लाइसेंस और श्रेय है।"],
+crl:["Photo credit and licence","ছবির স্বীকৃতি ও লাইসেন্স","चित्र श्रेय और लाइसेंस"],
+listen:["Listen","শুনুন","सुनें"],pause:["Pause","থামান","रोकें"],resume:["Resume","চালু করুন","जारी रखें"],stop:["Stop","বন্ধ","बंद"],spd:["Speed","গতি","गति"],
+nv2:["No native Bengali or Hindi voice was found, so audio is paused to avoid wrong pronunciation. Add the voice in your device’s speech settings (Android: Google Speech Services; iPhone: Settings, Accessibility, Spoken Content, Voices; Windows: Settings, Time & language, Speech), or open this page in Microsoft Edge, which has natural Bengali and Hindi voices.","এই ডিভাইসে বাংলা বা হিন্দির নিজস্ব কণ্ঠস্বর নেই, তাই ভুল উচ্চারণ এড়াতে অডিও থামানো হয়েছে। ডিভাইসের স্পিচ সেটিংসে ভাষাটির কণ্ঠস্বর যোগ করুন (অ্যান্ড্রয়েড: Google Speech Services; আইফোন: সেটিংস, অ্যাক্সেসিবিলিটি, Spoken Content, Voices; ইউইন্ডোজ: সেটিংস, সময় ও ভাষা, স্পিচ), অথবা Microsoft Edge-এ পাতাটি খুলুন, যেখানে স্বাভাবিক বাংলা ও হিন্দি কণ্ঠস্বর আছে।","इस डिवाइस पर बांग्ला या हिन्दी की अपनी आवाज़ नहीं मिली, इसलिए गलत उच्चारण से बचने के लिए ऑडियो रोका गया है। डिवाइस की स्पीच सेटिंग में आवाज़ जोड़ें (एंड्रॉइड: Google Speech Services; आईफ़ोन: सेटिंग, एक्सेसिबिलिटी, Spoken Content, Voices; विंडोज़: सेटिंग, समय और भाषा, स्पीच), या इस पेज को Microsoft Edge में खोलें, जहाँ प्राकृतिक बांग्ला और हिन्दी आवाज़ें हैं।"],vc:["Voice","কণ্ঠস্বর","आवाज़"],
+bull:["Listen to all articles (news bulletin)","সব প্রবন্ধ শুনুন (সংবাদ-বুলেটিন)","सभी लेख सुनें (समाचार बुलेटिन)"],
+nov:["No voice for this language was found on this device. Install one in system settings or try another browser.","এই ভাষার কণ্ঠস্বর এই ডিভাইসে পাওয়া যায়নি। সিস্টেম সেটিংসে ইনস্টল করুন বা অন্য ব্রাউজার ব্যবহার করুন।","इस भाषा की आवाज़ इस डिवाइस पर नहीं मिली। सिस्टम सेटिंग में इंस्टॉल करें या दूसरा ब्राउज़र आज़माएँ।"],
+pick:["Select a pin on the map to see details.","বিস্তারিত দেখতে মানচিত্রে একটি চিহ্নে ক্লিক করুন।","विवरण देखने के लिए मानचित्र पर किसी चिह्न पर क्लिक करें।"],
+send:["Send message","বার্তা পাঠান","संदेश भेजें"],
+sent:["Thank you. We will reply soon.","ধন্যবাদ। আমরা শীঘ্রই উত্তর দেব।","धन्यवाद। हम जल्द उत्तर देंगे।"],
+nm:["Name","নাম","नाम"],em:["Email","ইমেল","ईमेल"],ms:["Message","বার্তা","संदेश"],
+note:["Sample entries: replace with your own records.","নমুনা তথ্য: নিজস্ব তথ্য দিয়ে প্রতিস্থাপন করুন।","नमूना प्रविष्टियाँ: अपने अभिलेख से बदलें।"],
+home:["Home","হোম","होम"],about:["About Us","আমাদের কথা","हमारे बारे में"],work:["Our Work","আমাদের কাজ","हमारा कार्य"],museum:["Digital Museum","ডিজিটাল জাদুঘর","डिजिटल संग्रहालय"],news:["News & Events","খবর ও অনুষ্ঠান","समाचार व कार्यक्रम"],pubs:["Publications","প্রকাশনা","प्रकाशन"],gallery:["Gallery","গ্যালারি","गैलरी"],contact:["Contact","যোগাযোগ","संपर्क"],
+photos:["Photographs","আলোকচিত্র","छायाचित्र"],docs:["Documents","নথিপত্র","दस्तावेज़"],sites:["Heritage Sites","ঐতিহ্যস্থল","धरोहर स्थल"],oral:["Oral History","মৌখিক ইতিহাস","मौखिक इतिहास"],comm:["Communities","জনগোষ্ঠী","समुदाय"],pers:["Personalities","ব্যক্তিত্ব","व्यक्तित्व"],maps:["Maps & Timelines","মানচিত্র ও সময়রেখা","मानचित्र व समयरेखा"],research:["Research Archive","গবেষণা সংগ্রহ","शोध अभिलेखागार"],
+aboutT:["Founded in 2018, the Society documents, protects and shares the heritage of the Dooars: its forts, railways, forests, tea gardens and the people who shaped them.","২০১৮ সালে প্রতিষ্ঠিত এই সংস্থা ডুয়ার্সের দুর্গ, রেলপথ, বন, চা-বাগান ও মানুষের ঐতিহ্য নথিভুক্ত, সংরক্ষণ ও প্রচার করে।","2018 में स्थापित यह संस्था डुआर्स की विरासत — किले, रेलमार्ग, जंगल, चाय बागान और उनसे जुड़े लोगों — का दस्तावेज़ीकरण, संरक्षण और प्रसार करती है।"]
+};
+const AR={al:["Alipurduar district","আলিপুরদুয়ার জেলা","अलीपुरद्वार ज़िला"],cb:["Cooch Behar district","কোচবিহার জেলা","कूचबिहार ज़िला"]};
+const GC={all:["All","সব","सभी"],h:["Heritage","ঐতিহ্য","विरासत"],n:["Nature","প্রকৃতি","प्रकृति"],c:["Culture","সংস্কৃতি","संस्कृति"]};
+
+// ---------- SINGLE SOURCE OF TRUTH: every place, its name, photo, map position ----------
+// f = Wikimedia Commons file name (null = no photo yet). ll = approximate [lat,lng].
+// z = district (al / cb), c = gallery category, s = fallback illustration, a = article index.
+const P=[
+{id:"buxatr",f:"Buxa_Tiger_Reserve_forest_2014.jpg",z:"al",c:"n",s:3,ll:[26.74,89.56],
+ n:["Buxa Tiger Reserve","বক্সা ব্যাঘ্র প্রকল্প","बक्सा टाइगर रिज़र्व"],
+ i:["Forested Himalayan foothills on the Bhutan border, home to tigers, elephants and many birds.","ভুটান সীমান্তের হিমালয়-পাদদেশের অরণ্য; বাঘ, হাতি ও বহু পাখির আবাস।","भूटान सीमा पर हिमालय की तलहटी का वन; बाघ, हाथी और कई पक्षियों का घर।"]},
+{id:"buxafort",f:"Buxa_Fort%2C_Alipurduar.jpg",z:"al",c:"h",s:0,ll:[26.7967,89.5878],a:0,
+ n:["Buxa Fort","বক্সা দুর্গ","बक्सा किला"],
+ i:["Hill fort inside Buxa Tiger Reserve, later a colonial detention camp.","বক্সা ব্যাঘ্র প্রকল্পের ভেতরের শৈল-দুর্গ, পরে ঔপনিবেশিক বন্দিশিবির।","बक्सा टाइगर रिज़र्व के भीतर पहाड़ी किला, बाद में औपनिवेशिक बंदी शिविर।"]},
+{id:"jaldapara",f:"Elephant_Safari_in_Jaldapara_National_Park.jpg",z:"al",c:"n",s:2,ll:[26.68,89.33],a:2,
+ n:["Jaldapara National Park","জলদাপাড়া জাতীয় উদ্যান","जलदापाड़ा राष्ट्रीय उद्यान"],
+ i:["National park on the Torsa floodplain, known for the one-horned rhinoceros and for elephant safaris.","তোর্সা নদীর বন্যাসমভূমির জাতীয় উদ্যান; একশৃঙ্গ গণ্ডার ও হাতি-সাফারির জন্য বিখ্যাত।","तोर्सा नदी के बाढ़ मैदान का राष्ट्रीय उद्यान; एक सींग वाले गैंडे और हाथी सफ़ारी के लिए प्रसिद्ध।"]},
+{id:"chilapata",f:"Entry_to_the_Chilapata_Forest.jpg",z:"al",c:"n",s:3,ll:[26.52,89.33],
+ n:["Chilapata Forest","চিলাপাতা বন","चिलापाता वन"],
+ i:["Dense forest between Jaldapara and Buxa, holding the ruins of Nalraja Garh.","জলদাপাড়া ও বক্সার মাঝের ঘন বন, নলরাজার গড়ের ধ্বংসাবশেষসহ।","जलदापाड़ा और बक्सा के बीच का घना जंगल, नलराजा गढ़ के खंडहरों सहित।"]},
+{id:"jayanti",f:"Jayanti_river_Alipurduar.jpg",z:"al",c:"n",s:4,ll:[26.711,89.578],
+ n:["Jayanti River","জয়ন্তী নদী","जयंती नदी"],
+ i:["Riverside forest village on the Jayanti river in Buxa.","বক্সার জয়ন্তী নদীর তীরে বনগ্রাম।","बक्सा में जयंती नदी के किनारे वन ग्राम।"]},
+{id:"mahakal",f:"Mahakal_cave_entrance_WLB_DSC_8653.jpg",z:"al",c:"c",s:3,ll:[26.775,89.605],
+ n:["Mahakal Cave, Buxa","মহাকাল গুহা, বক্সা","महाकाल गुफ़ा, बक्सा"],
+ i:["Cave shrine in the Buxa hills, visited by pilgrims and trekkers.","বক্সার পাহাড়ে গুহা-মন্দির; তীর্থযাত্রী ও ট্রেকাররা আসেন।","बक्सा की पहाड़ियों में गुफा-मंदिर, जहाँ तीर्थयात्री और ट्रेकर आते हैं।"]},
+{id:"rajabhat",f:"Rajabhatkhawa_Railway_Station.jpg",z:"al",c:"h",s:1,ll:[26.529,89.559],
+ n:["Rajabhatkhawa","রাজাভাতখাওয়া","राजाभातखावा"],
+ i:["Forest gateway to Buxa, with a railway station, nature centre and butterfly park.","বক্সার বনপ্রবেশদ্বার; রেল স্টেশন, প্রকৃতি কেন্দ্র ও প্রজাপতি উদ্যান আছে।","बक्सा का वन प्रवेशद्वार; रेलवे स्टेशन, प्रकृति केंद्र और तितली उद्यान।"]},
+{id:"rasikbil",f:"Rasikbil_bird_Sanctuary_in_Cooch_Behar_District_1.jpg",z:"cb",c:"n",s:4,ll:[26.30,89.68],
+ n:["Rasikbil Bird Sanctuary","রসিকবিল পাখিরালয়","रसिकबिल पक्षी अभयारण्य"],
+ i:["Wetland bird sanctuary in Cooch Behar district, a refuge for migratory birds.","কোচবিহার জেলার জলাভূমির পাখিরালয়; পরিযায়ী পাখির আশ্রয়।","कूचबिहार ज़िले का आर्द्रभूमि पक्षी अभयारण्य; प्रवासी पक्षियों का आश्रय।"]},
+{id:"khayerbari",f:"Leopard_Khayerbari_Dooars.jpg",z:"al",c:"n",s:2,ll:[26.70,89.26],
+ n:["South Khayerbari Leopard Rescue Centre","দক্ষিণ খয়েরবাড়ি লেপার্ড রেসকিউ সেন্টার","दक्षिण खैरबाड़ी तेंदुआ बचाव केंद्र"],
+ i:["Wildlife rescue centre in the Dooars that cares for rescued leopards.","ডুয়ার্সের বন্যপ্রাণ উদ্ধারকেন্দ্র, যেখানে উদ্ধার করা লেপার্ডদের যত্ন নেওয়া হয়।","डुआर्स का वन्यजीव बचाव केंद्र, जहाँ बचाए गए तेंदुओं की देखभाल होती है।"]},
+{id:"totopara",f:"Hut_used_for_living_by_the_TOTO_aboriginals.jpg",z:"al",c:"c",s:6,ll:[26.82,89.29],a:4,
+ n:["Toto Para","টোটোপাড়া","तोतोपाड़ा"],
+ i:["Home of the Toto, one of India’s smallest tribal communities.","টোটো জনগোষ্ঠীর বাস, ভারতের অন্যতম ক্ষুদ্র আদিবাসী সম্প্রদায়।","भारत के सबसे छोटे जनजातीय समुदायों में से एक, तोतो का घर।"]},
+{id:"madanmohan",f:"Madan_Mohan_Bari_Cooch_Behar.jpg",z:"cb",c:"h",s:6,ll:[26.3246,89.4452],
+ n:["Madan Mohan Temple, Cooch Behar","মদনমোহন মন্দির, কোচবিহার","मदनमोहन मंदिर, कूचबिहार"],
+ i:["Temple of Madan Mohan (Krishna) in Cooch Behar town, part of the old royal tradition.","কোচবিহার শহরের মদনমোহন (কৃষ্ণ) মন্দির, প্রাচীন রাজ-ঐতিহ্যের অংশ।","कूचबिहार नगर का मदनमोहन (कृष्ण) मंदिर, पुरानी राजसी परंपरा का हिस्सा।"]},
+{id:"baneswar",f:"Baneswar_Shiva_Temple%2C_Baneswar%2C_Cooch_Behar%2C_WB%2C_In_14.JPG",z:"cb",c:"c",s:6,ll:[26.3355,89.516],
+ n:["Baneswar Shiva Temple","বানেশ্বর শিব মন্দির","बानेश्वर शिव मंदिर"],
+ i:["Old Shiva temple at Baneswar near Cooch Behar town, a centre of local worship.","কোচবিহার শহরের কাছে বানেশ্বরের প্রাচীন শিবমন্দির, স্থানীয় পূজার কেন্দ্র।","कूचबिहार नगर के पास बानेश्वर का पुराना शिव मंदिर, स्थानीय पूजा का केंद्र।"]},
+// map-only places (no photo supplied yet)
+{id:"junction",f:null,z:"al",c:"h",s:1,ll:[26.4873,89.527],a:1,
+ n:["Alipurduar Junction","আলিপুরদুয়ার জংশন","अलीपुरद्वार जंक्शन"],
+ i:["Rail hub of the Dooars and gateway to the Northeast.","ডুয়ার্সের রেল-কেন্দ্র ও উত্তর-পূর্বের প্রবেশপথ।","डुआर्स का रेल केंद्र और पूर्वोत्तर का प्रवेशद्वार।"]},
+{id:"jaigaon",f:null,z:"al",c:"h",s:6,ll:[26.857,89.379],
+ n:["Jaigaon","জয়গাঁও","जयगाँव"],
+ i:["Border town facing Phuentsholing in Bhutan.","ভুটানের ফুন্টশোলিং-এর মুখোমুখি সীমান্ত শহর।","भूटान के फुन्टशोलिंग के सामने स्थित सीमावर्ती नगर।"]}
+];
+const PM=Object.fromEntries(P.map(p=>[p.id,p])),HP=P.filter(p=>p.f);
+const CM="https://commons.wikimedia.org/wiki/Special:FilePath/";
+const psrc=(p,w)=>CM+p.f+"?width="+w,pset=p=>[640,1024,1600].map(w=>psrc(p,w)+" "+w+"w").join(", "),palt=p=>p.n[L]+", "+AR[p.z][L];
+const pimg=(p,sizes,w)=>p&&p.f?`<img src="${psrc(p,w||640)}" srcset="${pset(p)}" sizes="${sizes}" alt="${palt(p)}" loading="lazy" decoding="async">`:"";
+const SB=["linear-gradient(#27465a,#c98d4a 75%)","linear-gradient(#30403d,#b99a6a 78%)","linear-gradient(#8fb8a6,#f0e2b0 78%)","linear-gradient(#34506b,#d9a45b 80%)"];
+
+const ART=[
+{t:["Buxa Fort: Gateway, Garrison, Prison","বক্সা দুর্গ: প্রবেশদ্বার, ছাউনি, কারাগার","बक्सा किला: प्रवेशद्वार, छावनी, कारागार"],
+ p:[["Buxa Fort sits on a ridge of the Bhutan foothills and once guarded a duar, a mountain gateway into the plains.","After the Duar War of 1864–65, the British took control of the Dooars and the fort became a military post.","In the 1930s and 1940s it served as a detention camp for political prisoners, and later it sheltered refugees.","Today it is a trekking destination inside Buxa Tiger Reserve."],
+ ["বক্সা দুর্গ ভুটান সীমান্তের পাদদেশের এক শৈলশিরায় অবস্থিত। একসময় সমভূমিতে নামার ‘দুয়ার’ বা গিরিপথ পাহারা দিত এই দুর্গ।","১৮৬৪–৬৫ সালের দুয়ার যুদ্ধের পর ব্রিটিশরা ডুয়ার্সের দখল নেয় এবং দুর্গটি সামরিক ঘাঁটিতে পরিণত হয়।","১৯৩০ ও ১৯৪০-এর দশকে এখানে রাজবন্দিদের আটকে রাখা হতো, পরে শরণার্থীরাও আশ্রয় পান।","আজ এটি বক্সা ব্যাঘ্র প্রকল্পের ভেতরে ট্রেকিংয়ের গন্তব্য।"],
+ ["बक्सा किला भूटान की तलहटी की एक पहाड़ी पर स्थित है और कभी मैदानों में उतरने वाले ‘दुआर’ यानी पहाड़ी द्वार की रक्षा करता था।","1864–65 के दुआर युद्ध के बाद अंग्रेज़ों ने डुआर्स पर अधिकार किया और किला सैन्य चौकी बन गया।","1930 और 1940 के दशक में यहाँ राजनीतिक बंदियों को रखा गया, बाद में शरणार्थियों को भी आश्रय मिला।","आज यह बक्सा टाइगर रिज़र्व के भीतर ट्रेकिंग का गंतव्य है।"]]},
+{t:["From Railway Town to District","রেলশহর থেকে জেলা","रेल नगर से ज़िले तक"],
+ p:[["Alipurduar grew around the railway and the tea economy of the Dooars. Its junction connects North Bengal with Assam and the wider Northeast.","After the princely state of Cooch Behar merged with West Bengal in 1950, the area remained part of Jalpaiguri district.","Alipurduar became a district of its own on 25 June 2014."],
+ ["রেলপথ ও ডুয়ার্সের চা-অর্থনীতিকে ঘিরেই আলিপুরদুয়ার গড়ে ওঠে। এর জংশন উত্তরবঙ্গকে অসম ও বৃহত্তর উত্তর-পূর্বের সঙ্গে যুক্ত করেছে।","১৯৫০ সালে কোচবিহার রাজ্য পশ্চিমবঙ্গে মিশে গেলে এলাকাটি জলপাইগুড়ি জেলার অংশ থাকে।","২০১৪ সালের ২৫ জুন আলিপুরদুয়ার আলাদা জেলা হয়।"],
+ ["अलीपुरद्वार रेलवे और डुआर्स की चाय अर्थव्यवस्था के इर्द-गिर्द बसा। इसका जंक्शन उत्तर बंगाल को असम और पूर्वोत्तर से जोड़ता है।","1950 में कूचबिहार रियासत के पश्चिम बंगाल में विलय के बाद यह क्षेत्र जलपाईगुड़ी ज़िले का हिस्सा रहा।","25 जून 2014 को अलीपुरद्वार अलग ज़िला बना।"]]},
+{t:["Jaldapara: Rhino Country","জলদাপাড়া: গণ্ডারের দেশ","जलदापाड़ा: गैंडों का देश"],
+ p:[["Jaldapara lies on the floodplain of the Torsa river, a mix of tall grassland and riverine forest.","It became a wildlife sanctuary in 1941 and a national park in 2012. It is best known for the Indian one-horned rhinoceros.","Elephants, deer and many birds also live here, and visitors explore the park on forest safaris."],
+ ["জলদাপাড়া তোর্সা নদীর বন্যাসমভূমিতে অবস্থিত; এখানে উঁচু তৃণভূমি ও নদীতীরের বন মিলেমিশে আছে।","১৯৪১ সালে এটি অভয়ারণ্য হয় এবং ২০১২ সালে জাতীয় উদ্যানের মর্যাদা পায়। ভারতীয় একশৃঙ্গ গণ্ডারের জন্য এটি সবচেয়ে বিখ্যাত।","এখানে হাতি, হরিণ ও নানা পাখিরও বাস। দর্শনার্থীরা বন-সাফারিতে ঘুরে দেখেন।"],
+ ["जलदापाड़ा तोर्सा नदी के बाढ़ मैदान में बसा है, जहाँ ऊँचे घास के मैदान और नदी किनारे के जंगल मिलते हैं।","1941 में यह अभयारण्य बना और 2012 में राष्ट्रीय उद्यान का दर्जा मिला। यह भारतीय एक सींग वाले गैंडे के लिए सबसे प्रसिद्ध है।","यहाँ हाथी, हिरण और कई पक्षी भी रहते हैं। पर्यटक वन सफ़ारी से इसे देखते हैं।"]]},
+{t:["Tea and the Making of the Dooars","চা ও ডুয়ার্সের গড়ে ওঠা","चाय और डुआर्स का निर्माण"],
+ p:[["Tea planting began in the Dooars in the 1870s, soon after the British took control of the region.","Planters brought workers from Chota Nagpur and Nepal to clear forest and pluck leaf. Santhal, Oraon, Munda and Nepali families settled in labour lines beside the gardens.","Their languages, songs and festivals are now part of everyday life in Alipurduar, and tea remains a major source of work."],
+ ["ব্রিটিশরা অঞ্চলটির নিয়ন্ত্রণ নেওয়ার অল্পদিন পরেই, ১৮৭০-এর দশকে ডুয়ার্সে চা-চাষ শুরু হয়।","বন কেটে চা-পাতা তোলার জন্য বাগান-মালিকরা ছোটনাগপুর ও নেপাল থেকে শ্রমিক আনেন। সাঁওতাল, ওরাওঁ, মুন্ডা ও নেপালি পরিবার বাগানের পাশের শ্রমিক-বসতিতে থিতু হয়।","তাঁদের ভাষা, গান ও উৎসব আজ আলিপুরদুয়ারের দৈনন্দিন জীবনের অংশ, আর চা এখনও কর্মসংস্থানের বড় উৎস।"],
+ ["अंग्रेज़ों के क्षेत्र पर नियंत्रण के कुछ ही समय बाद, 1870 के दशक में डुआर्स में चाय की खेती शुरू हुई।","बागान मालिक जंगल साफ़ करने और पत्ती तोड़ने के लिए छोटानागपुर और नेपाल से श्रमिक लाए। संथाल, उराँव, मुंडा और नेपाली परिवार बागानों के पास श्रमिक बस्तियों में बस गए।","उनकी भाषाएँ, गीत और त्योहार आज अलीपुरद्वार के रोज़मर्रा के जीवन का हिस्सा हैं, और चाय अब भी रोज़गार का बड़ा स्रोत है।"]]},
+{t:["The Toto of Totopara","টোটোপাড়ার টোটো","तोतोपाड़ा के तोतो"],
+ p:[["The Toto live mainly in Totopara, a village near the Bhutan border in the Madarihat area.","They are one of India’s smallest tribal communities and are recognised as a Particularly Vulnerable Tribal Group.","Protecting their language, customs and land is a central task of heritage work in the district."],
+ ["টোটোরা মূলত মাদারিহাট এলাকায় ভুটান সীমান্তের কাছে টোটোপাড়া গ্রামে বাস করেন।","এঁরা ভারতের অন্যতম ক্ষুদ্র আদিবাসী সম্প্রদায় এবং বিশেষভাবে ঝুঁকিপ্রবণ আদিবাসী গোষ্ঠী হিসেবে স্বীকৃত।","তাঁদের ভাষা, রীতিনীতি ও জমি রক্ষা করা জেলার ঐতিহ্য-কাজের একটি কেন্দ্রীয় দায়িত্ব।"],
+ ["तोतो मुख्यतः मादारीहाट क्षेत्र में भूटान सीमा के पास तोतोपाड़ा गाँव में रहते हैं।","वे भारत के सबसे छोटे जनजातीय समुदायों में से हैं और विशेष रूप से कमज़ोर जनजातीय समूह के रूप में मान्य हैं।","उनकी भाषा, रीति-रिवाज और ज़मीन की रक्षा ज़िले के विरासत कार्य का केंद्रीय दायित्व है।"]]}];
+
+// museum sections: id, intro, titles, place ids (aligned with titles, or the full list when titles are empty)
+const MS=[
+["photos",["Rare and unpublished photographs of the district.","জেলার দুর্লভ ও অপ্রকাশিত আলোকচিত্র।","ज़िले के दुर्लभ और अप्रकाशित छायाचित्र।"],[],["buxatr","buxafort","jaldapara","mahakal"]],
+["docs",["Maps, reports and letters from the colonial and post-colonial record.","ঔপনিবেশিক ও উত্তর-ঔপনিবেশিক নথির মানচিত্র, প্রতিবেদন ও চিঠি।","औपनिवेशिक और उत्तर-औपनिवेशिक अभिलेखों के मानचित्र, रिपोर्ट और पत्र।"],[["Survey maps","জরিপ মানচিত্র","सर्वेक्षण मानचित्र"],["Treaty papers","চুক্তিপত্র","संधि पत्र"],["Tea estate records","চা-বাগানের নথি","चाय बागान अभिलेख"]],[]],
+["sites",["Forts, stations, ruins and temples across the region.","অঞ্চলজুড়ে দুর্গ, স্টেশন, ধ্বংসাবশেষ ও মন্দির।","पूरे क्षेत्र के किले, स्टेशन, खंडहर और मंदिर।"],[],["buxafort","chilapata","rajabhat","madanmohan","baneswar"]],
+["oral",["Memories from people who lived through the changes.","পরিবর্তনের সাক্ষী মানুষের স্মৃতিকথা।","बदलावों के साक्षी लोगों की यादें।"],[["Railway families","রেল পরিবারের কথা","रेल परिवारों की बातें"],["Tea garden workers","চা-শ্রমিকের কথা","चाय श्रमिकों की बातें"],["Border traders","সীমান্ত ব্যবসায়ী","सीमा व्यापारी"]],[]],
+["comm",["Toto, Mech, Rabha, Rajbanshi, Santhal, Oraon, Nepali and Drukpa communities.","টোটো, মেচ, রাভা, রাজবংশী, সাঁওতাল, ওরাওঁ, নেপালি ও ড্রুকপা জনগোষ্ঠী।","तोतो, मेच, राभा, राजबंशी, संथाल, उराँव, नेपाली और ड्रुकपा समुदाय।"],[["Toto","টোটো","तोतो"],["Mech","মেচ","मेच"],["Rajbanshi","রাজবংশী","राजबंशी"],["Santhal","সাঁওতাল","संथाल"]],["totopara","","",""]],
+["pers",["Profiles of people who shaped the region. Profiles are being compiled.","এই অঞ্চল গড়ার মানুষদের পরিচিতি। তথ্য সংকলন চলছে।","क्षेत्र को गढ़ने वाले लोगों के परिचय। संकलन जारी है।"],[["Freedom fighters","স্বাধীনতা সংগ্রামী","स्वतंत्रता सेनानी"],["Educators","শিক্ষাবিদ","शिक्षाविद"],["Naturalists","প্রকৃতিবিদ","प्रकृतिवादी"]],[]],
+["maps",["",""," "],[],[]],
+["research",["Guides for students, researchers and educators.","শিক্ষার্থী, গবেষক ও শিক্ষকদের জন্য নির্দেশিকা।","विद्यार्थियों, शोधकर्ताओं और शिक्षकों के लिए मार्गदर्शिका।"],[["How to cite the archive","সংগ্রহ উদ্ধৃতি পদ্ধতি","अभिलेखागार का संदर्भ कैसे दें"],["Bibliography","গ্রন্থপঞ্জি","ग्रंथसूची"],["Request a scan","স্ক্যানের অনুরোধ","स्कैन का अनुरोध"]],[]]];
+const TLN=[["1864–65",["Duar War; the British take the Dooars.","দুয়ার যুদ্ধ; ডুয়ার্স ব্রিটিশদের হাতে।","दुआर युद्ध; डुआर्स पर अंग्रेज़ों का अधिकार।"]],["1930s–40s",["Buxa Fort serves as a detention camp.","বক্সা দুর্গ বন্দিশিবির হিসেবে ব্যবহৃত।","बक्सा किला बंदी शिविर के रूप में।"]],["1950",["Cooch Behar merges with West Bengal.","কোচবিহার পশ্চিমবঙ্গে মিশে যায়।","कूचबिहार का पश्चिम बंगाल में विलय।"]],["2014",["Alipurduar becomes a district on 25 June.","২৫ জুন আলিপুরদুয়ার জেলা হয়।","25 जून को अलीपुरद्वार ज़िला बना।"]]];
+const WORK=[["Documentation","নথিভুক্তকরণ","दस्तावेज़ीकरण"],["Conservation","সংরক্ষণ","संरक्षण"],["Education","শিক্ষা","शिक्षा"],["Community archives","সম্প্রদায়ের সংগ্রহ","सामुदायिक अभिलेख"]];
+const NEWS=[["Heritage walk at the old station","পুরনো স্টেশনে হেরিটেজ ওয়াক","पुराने स्टेशन पर हेरिटेज वॉक"],["Call for family photographs","পারিবারিক ছবির আহ্বান","पारिवारिक तस्वीरों का आह्वान"],["Oral history workshop","মৌখিক ইতিহাস কর্মশালা","मौखिक इतिहास कार्यशाला"]];
+const PUB=[["Buxa: A Fort Remembered","বক্সা: স্মৃতির দুর্গ","बक्सा: स्मृति का किला"],["Dooars Railway Notes","ডুয়ার্স রেল নোটস","डुआर्स रेल नोट्स"],["Voices of the Tea Belt","চা-বলয়ের কণ্ঠস্বর","चाय पट्टी की आवाज़ें"]];
+const PUB_ART=[0,1,3],PUB_PH=["buxafort","junction","jaldapara"];
+const GT=["#2d6353,#e5a73b","#4a3b2a,#d9a45b","#8fb8a6,#144336","#34506b,#e5a73b","#6b4a34,#f0e2b0","#1d5a4a,#b9d6ca"];
+
+// ---------- illustration fallback (shown until / unless a photo loads) ----------
+const SC=["#27465a,#c98d4a","#30403d,#b99a6a","#8fb8a6,#f0e2b0","#4a3b2a,#d9a45b","#34506b,#9fc4b0","#6aa68a,#f0e2b0","#6b4a34,#e5c58a","#8fb8a6,#f0e2b0"];
+function scene(k){const e=[
+'<rect x="150" y="80" width="100" height="60" fill="#e5ded2"/><rect x="150" y="68" width="16" height="14" fill="#e5ded2"/><rect x="234" y="68" width="16" height="14" fill="#e5ded2"/><path d="M190 140v-24a10 10 0 0 1 20 0v24z" fill="#144336"/>',
+'<rect x="60" y="110" width="280" height="40" fill="#8a7a62"/><rect x="130" y="70" width="140" height="40" fill="#faf4e3" stroke="#231d15" stroke-width="3"/><text x="200" y="96" font-size="12" font-weight="800" text-anchor="middle" fill="#171511">ALIPURDUAR JN.</text>',
+'<ellipse cx="200" cy="120" rx="60" ry="30" fill="#6b6a64"/><circle cx="262" cy="108" r="17" fill="#6b6a64"/><path d="M272 82l8 16-14 4z" fill="#d9d3c4"/>',
+'<path d="M110 150v-50a30 30 0 0 1 60 0v50zM200 150v-40a22 22 0 0 1 44 0v40z" fill="#7a5a44"/>',
+'<path d="M0 120C100 90 160 160 260 120S360 100 400 110V200H0z" fill="#7fb0c8"/>',
+'<ellipse cx="170" cy="100" rx="26" ry="14" fill="#e5a73b"/><ellipse cx="230" cy="100" rx="26" ry="14" fill="#c0523a"/><rect x="198" y="88" width="4" height="30" fill="#2b1d12"/>',
+'<path d="M120 130l40-36 40 36z" fill="#8a5a34"/><rect x="132" y="130" width="56" height="26" fill="#e5c58a"/><path d="M240 130l34-30 34 30z" fill="#8a5a34"/><rect x="250" y="130" width="48" height="26" fill="#e5c58a"/>',
+[0,1,2,3].map(j=>`<path d="M0 ${120+j*20}C100 ${105+j*20} 300 ${140+j*20} 400 ${120+j*20}" stroke="#2f7a52" stroke-width="9" fill="none"/>`).join("")][k],c=SC[k].split(",");
+ return `<svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true"><defs><linearGradient id="sg${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c[0]}"/><stop offset="1" stop-color="${c[1]}"/></linearGradient></defs><rect width="400" height="200" fill="url(#sg${k})"/><path d="M0 200V150L90 100 170 140 260 80 340 130 400 100V200Z" fill="#1f4a3c" opacity=".8"/>${e}<path d="M0 200V170C130 150 260 185 400 165V200Z" fill="#0d2d24"/></svg>`}
+
+let L=0,cur=0,sel=null,zoom=1,timer,gf="all";
+const t=k=>T[k][L];
+// image load / error: fade in photo and stop the skeleton; on error keep the illustration
+document.addEventListener("load",e=>{if(e.target.tagName=="IMG"){e.target.classList.add("l");e.target.parentElement.classList.add("ok")}},true);
+document.addEventListener("error",e=>{if(e.target.tagName=="IMG"){e.target.parentElement.classList.add("ok");e.target.remove()}},true);
+
+// ---------- cards, gallery, place dialog ----------
+const tile=(i,p)=>`<div class="im${p&&p.f?" sk":""}" style="background:linear-gradient(135deg,${GT[i%6]})">${pimg(p,"(max-width:640px) 50vw, 25vw")}</div>`;
+const card=(ti,i,sub,p)=>{const b=`${tile(i,p)}<div class="bd"><h4>${ti}</h4>${sub?`<p>${sub}</p>`:""}</div>`;return p?`<button class="c k" data-p="${p.id}">${b}</button>`:`<div class="c">${b}</div>`};
+const ph=p=>`<div class="ph sk">${scene(p.s)}${pimg(p,"(max-width:640px) 50vw, 25vw")}</div>`;
+function galleryInner(){return HP.map(p=>gf=="all"||p.c==gf?`<button class="gi" data-p="${p.id}">${ph(p)}<span>${p.n[L]}</span></button>`:"").join("")}
+function galleryHtml(){return `<div class="chips" role="group">${Object.keys(GC).map(k=>`<button data-gf="${k}" aria-pressed="${gf==k}">${GC[k][L]}</button>`).join("")}</div><div class="grid" id="gal">${galleryInner()}</div><p class="lead" style="margin-top:14px">${t("cred")}</p>`}
+function openPlace(id){const p=PM[id];
+ document.getElementById("art").innerHTML=`<div class="bar"><span>${AR[p.z][L]}</span><button data-x>${t("close")}</button></div><div class="big${p.f?" sk":""}">${scene(p.s)}${pimg(p,"(max-width:760px) 100vw, 720px",1024)}</div><h2>${p.n[L]}</h2><p style="color:var(--mut);margin-bottom:6px">${GC[p.c][L]}</p><p>${p.i[L]}</p><div class="acts">${p.a!==undefined?`<button class="btn" data-art="${p.a}">${t("read")}</button>`:""}<button class="btn" data-map="${p.id}">${t("showmap")}</button>${p.f?`<a class="btn" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:${p.f}">${t("crl")}</a>`:""}</div>`;
+ document.getElementById("mod").classList.add("on")}
+
+// ---------- map: lat/lng projected into an SVG ----------
+const B={la:[26.25,27.0],ln:[89.0,89.95]},W=760,H=600;
+const px=(la,ln)=>[(ln-B.ln[0])/(B.ln[1]-B.ln[0])*W,(B.la[1]-la)/(B.la[1]-B.la[0])*H];
+function mapSvg(){
+  let vb=`0 0 ${W} ${H}`;
+  if(zoom>1&&sel){const [x,y]=px(...PM[sel].ll),w=W/zoom,h=H/zoom;vb=`${Math.max(0,Math.min(W-w,x-w/2))} ${Math.max(0,Math.min(H-h,y-h/2))} ${w} ${h}`}
+  return `<svg viewBox="${vb}" role="img" aria-label="Map of Alipurduar district with heritage sites" style="background:var(--sand)">
+  <rect width="${W}" height="${H}" fill="#cfe0d8" opacity=".35"/>
+  <text x="300" y="30" font-size="13" fill="var(--mut)" font-style="italic">Bhutan ↑</text><text x="14" y="300" font-size="11" fill="var(--mut)">Jalpaiguri</text><text x="640" y="40" font-size="11" fill="var(--mut)">Kalimpong</text><text x="250" y="590" font-size="11" fill="var(--mut)">${AR.cb[L]}</text>
+  <path d="M96 381L95 381L93 367L83 369L82 349L74 346L78 338L84 327L84 326L60 324L59 317L54 323L36 309L34 295L54 240L60 201L55 191L74 149L72 128L72 128L103 155L135 148L205 154L253 125L260 130L300 117L306 131L343 132L364 162L438 150L446 162L512 178L509 200L487 218L496 227L502 222L520 228L533 210L572 224L595 214L611 241L639 233L681 241L691 255L693 284L680 302L696 309L693 326L699 333L686 339L690 357L681 383L680 409L696 429L678 462L685 470L669 470L668 468L661 462L668 455L656 453L662 441L682 443L678 438L688 427L676 424L657 423L659 432L599 428L598 448L583 444L558 458L527 448L518 462L498 462L493 481L465 456L449 457L456 465L449 472L437 467L445 456L430 446L432 433L419 421L401 428L394 418L361 410L348 426L313 430L284 404L242 415L151 392L141 399L118 385L96 381L96 381Z" fill="#9fc4b0" fill-opacity=".55" stroke="var(--g)" stroke-width="2.5" stroke-linejoin="round"/><text x="360" y="395" font-size="14" font-weight="700" fill="var(--g)" opacity=".7" style="paint-order:stroke;stroke:var(--card);stroke-width:3px">${AR.al[L].toUpperCase()}</text>
+  ${P.map(p=>{const [x,y]=px(...p.ll);return `<g class="pin${sel===p.id?" on":""}" data-i="${p.id}" tabindex="0" role="button" aria-label="${p.n[L]}"><circle class="hit" cx="${x}" cy="${y}" r="26" fill="transparent"/><circle cx="${x}" cy="${y}" r="7" fill="${p.z=="cb"?"var(--cb)":"var(--g)"}" stroke="#fff" stroke-width="2"/><text x="${x+11}" y="${y+4}">${p.n[L]}</text></g>`}).join("")}
+  </svg>`}
+function info(){
+  let d=`<p style="color:var(--mut)">${t("pick")}</p>`;
+  if(sel){const p=PM[sel];d=`${p.f?`<div class="dthumb sk">${scene(p.s)}${pimg(p,"(max-width:860px) 100vw, 360px")}</div>`:""}<h3>${p.n[L]}</h3><p style="color:var(--mut);font-size:12.5px;margin-bottom:6px">${AR[p.z][L]}</p><p>${p.i[L]}</p><p style="color:var(--mut);font-size:12px;margin-top:8px">${p.ll[0].toFixed(3)}°N, ${p.ll[1].toFixed(3)}°E</p>${p.a!==undefined?`<button class="btn" data-art="${p.a}">${t("read")}</button>`:""}`}
+  return d+`<div class="plist"><h5>${t("locs")}</h5>${P.map(p=>`<button class="pi${sel===p.id?" on":""}" data-pi="${p.id}">${p.n[L]}</button>`).join("")}</div>`}
+function refreshMap(){document.getElementById("mapv").innerHTML=mapSvg();document.getElementById("info").innerHTML=info()}
+
+// ---------- render ----------
+function render(){
+  document.documentElement.lang=["en","bn","hi"][L];
+  document.getElementById("tag").textContent=t("tag");
+  document.getElementById("fcred").textContent=t("cred");
+  document.querySelectorAll("#lang button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.l===L));
+  document.getElementById("mnav").innerHTML=["home","about","work","museum","news","pubs","gallery","contact"].map(k=>`<a href="#${k}" data-m="${k}">${t(k)}</a>`).join("");
+  document.getElementById("sub").innerHTML=`<b>${t("museum")}</b>`+MS.map(m=>`<a href="#${m[0]}" data-s="${m[0]}">${t(m[0])}</a>`).join("");
+  const n=HP.length;
+  const hero=`<section class="hero" aria-roledescription="carousel">${HP.map((p,i)=>`<div class="sl${i===cur?" on":""}" role="group" aria-roledescription="slide" aria-label="${i+1} / ${n}"><div class="bg sk" style="background:${SB[i%4]}"><svg viewBox="0 0 800 300" preserveAspectRatio="none" aria-hidden="true"><path d="M0 300V150L120 90 230 160 360 60 520 150 650 80 800 140V300Z" fill="#1f4a3c" opacity=".85"/><path d="M0 300V210C200 170 400 240 800 190V300Z" fill="#0d2d24"/></svg><img data-src="${psrc(p,1600)}" data-srcset="${pset(p)}" sizes="100vw" alt="${palt(p)}" decoding="async"></div><div class="tx"><span class="chipa">${AR[p.z][L]}</span><h2>${p.n[L]}</h2><p>${p.i[L]}</p><button class="cta" data-p="${p.id}">${t("more")}</button><a class="cta g" href="#photos">${t("explore")}</a></div></div>`).join("")}
+  <button class="arr" style="left:16px" data-d="-1" aria-label="Previous">‹</button><button class="arr" style="right:16px" data-d="1" aria-label="Next">›</button>
+  <div class="dots">${HP.map((p,i)=>`<button class="${i===cur?"on":""}" data-g="${i}" aria-label="${p.n[L]}"></button>`).join("")}</div><div class="cnt"><b id="cn">${String(cur+1).padStart(2,"0")}</b> / ${String(n).padStart(2,"0")}</div></section>`;
+  const sec=(id,ti,body,lead)=>`<section id="${id}"><div class="wrap"><h2 class="st">${ti}</h2>${lead?`<p class="lead">${lead}</p>`:""}${body}</div></section>`;
+  const ms=MS.map((m,mi)=>{
+    if(m[0]=="maps")return sec("maps",t("maps"),`<div class="mapbox"><div><div class="map"><div id="mapv">${mapSvg()}</div><div class="zoom"><button data-z="1" aria-label="Zoom in">+</button><button data-z="-1" aria-label="Zoom out">−</button></div></div><p class="legend"><span style="color:var(--g)">●</span> ${AR.al[L]} &nbsp; <span style="color:var(--cb)">●</span> ${AR.cb[L]} · ${t("approx")}</p></div><aside class="info" id="info" aria-live="polite">${info()}</aside></div><div class="tl">${TLN.map(x=>`<div><b>${x[0]}</b><br>${x[1][L]}</div>`).join("")}</div>`);
+    const items=m[2].length?m[2].map((x,i)=>({name:x[L],p:PM[m[3][i]]})):m[3].map(id=>({name:PM[id].n[L],p:PM[id]}));
+    return sec(m[0],t(m[0]),`<div class="grid">${items.map((x,i)=>card(x.name,i+mi,"",x.p)).join("")}</div>`,m[1][L])}).join("");
+  document.getElementById("app").innerHTML=hero+
+   sec("about",t("about"),"",t("aboutT"))+
+   sec("work",t("work"),`<div class="grid">${WORK.map((w,i)=>card(w[L],i)).join("")}</div>`)+
+   `<section id="museum"><div class="wrap" style="padding-bottom:0"><h2 class="st">${t("museum")}</h2><p class="lead">${t("note")}</p></div></section>`+ms+
+   sec("news",t("news"),`<div class="cols">${NEWS.map((x,i)=>`<div class="c">${tile(i+2)}<div class="bd"><h4>${x[L]}</h4><p>${["12 Nov 2026","03 Dec 2026","20 Jan 2027"][i]}</p><a class="btn" href="#contact">${t("contact")}</a></div></div>`).join("")}</div>`)+
+   sec("pubs",t("pubs"),`<div class="grid">${PUB.map((x,i)=>`<div class="c">${tile(i+1,PM[PUB_PH[i]])}<div class="bd"><h4>${x[L]}</h4><button class="btn" data-art="${PUB_ART[i]}">${t("read")}</button></div></div>`).join("")}${ART.map((a,i)=>`<div class="c"><div class="bd"><h4>${a.t[L]}</h4><button class="btn" data-art="${i}">${t("read")}</button> <button class="btn" data-art="${i}" data-play="1">▶ ${t("listen")}</button></div></div>`).join("")}</div><button class="btn" data-bull>▶ ${t("bull")}</button>`)+
+   sec("gallery",t("gallery"),galleryHtml())+
+   sec("contact",t("contact"),`<form id="cf"><input required placeholder="${t("nm")}" aria-label="${t("nm")}"><input type="email" required placeholder="${t("em")}" aria-label="${t("em")}"><textarea rows="4" required placeholder="${t("ms")}" aria-label="${t("ms")}"></textarea><button class="btn" style="width:fit-content;margin:0">${t("send")}</button><p id="ok" style="color:var(--g);font-weight:600"></p></form>`);
+  loadSlide(cur);loadSlide(cur+1);spy();
+}
+// ---------- carousel: only the current and next photo are fetched ----------
+function loadSlide(i){const s=document.querySelectorAll(".sl");if(!s.length)return;const im=s[(i+s.length)%s.length].querySelector("img[data-src]");if(im){im.srcset=im.dataset.srcset;im.src=im.dataset.src;im.removeAttribute("data-src")}}
+function go(i){const n=HP.length;cur=(i+n)%n;document.querySelectorAll(".sl").forEach((s,k)=>s.classList.toggle("on",k===cur));document.querySelectorAll(".dots button").forEach((d,k)=>{d.classList.remove("on");if(k===cur){void d.offsetWidth;d.classList.add("on")}});const c=document.getElementById("cn");if(c)c.textContent=String(cur+1).padStart(2,"0");loadSlide(cur);loadSlide(cur+1);clearInterval(timer);timer=setInterval(()=>go(cur+1),6000)}
+// ---------- article reader ----------
+let fs=18;
+function openArt(i,play){showArt(i);if(play)speak([i]);else stopSpeak()}
+let shown=null;function showArt(i){shown=i;const a=ART[i];document.getElementById("art").style.setProperty("--fs",fs+"px");
+  document.getElementById("art").innerHTML=`<div class="bar"><span>${t("museum")}</span><span><button data-f="-1" aria-label="Smaller text">A−</button> <button data-f="1" aria-label="Larger text">A+</button> <button data-x>${t("close")}</button></span></div><h2>${a.t[L]}</h2><div class="pl"><button class="btn" id="ppb" data-pp></button><button class="btn" data-st>■ ${t("stop")}</button><label>${t("spd")} <select data-sp>${[0.8,1,1.25,1.5].map(r=>`<option value="${r}"${r==rate?" selected":""}>${r}×</option>`).join("")}</select></label>${vsHtml()}<span id="vn"></span></div><div class="body">${a.p[L].map((x,k)=>`<p id="p${k}">${x}</p>`).join("")}</div>`;
+  document.getElementById("mod").classList.add("on");setBtn()}
+const closeArt=()=>{stopSpeak();document.getElementById("mod").classList.remove("on")};
+// ---------- audio reader (Web Speech API) ----------
+const SS=window.speechSynthesis,LC=["en-IN","bn-IN","hi-IN"];let Q=[],qi=0,pi=0,paused=false,rate=1,tok=0;
+const vsel={},nl=x=>x.lang.toLowerCase().replace("_","-"),nat=s=>L==1?s.replace(/(\d)–(\d)/g,"$1 থেকে $2").replace(/[0-9]/g,d=>"০১২৩৪৫৬৭৮৯"[d]):L==2?s.replace(/(\d)–(\d)/g,"$1 से $2").replace(/[0-9]/g,d=>"०१२३४५६७८९"[d]):s;
+function vlist(){return SS?SS.getVoices().filter(x=>nl(x).startsWith(LC[L].slice(0,2))):[]}
+function voice(){const ms=vlist(),lc=LC[L].toLowerCase();return ms.find(x=>x.voiceURI==vsel[L])||ms.find(x=>/natural|neural|online/i.test(x.name)&&nl(x)==lc)||ms.find(x=>nl(x)==lc)||ms.find(x=>/google/i.test(x.name))||ms[0]}
+function vsHtml(){const ms=vlist(),c=voice();return ms.length>1?`<label id="vsb">${t("vc")} <select data-vc>${ms.map(x=>`<option value="${x.voiceURI}"${c&&c.voiceURI==x.voiceURI?" selected":""}>${x.name}</option>`).join("")}</select></label>`:`<span id="vsb"></span>`}
+if(SS)SS.addEventListener("voiceschanged",()=>{const p=document.getElementById("vsb");if(p)p.outerHTML=vsHtml()});
+document.addEventListener("change",e=>{if(e.target.matches("[data-vc]"))vsel[L]=e.target.value});
+function setBtn(){const b=document.getElementById("ppb");if(b)b.textContent=paused?"▶ "+t("resume"):(SS&&SS.speaking&&Q.length)?"⏸ "+t("pause"):"▶ "+t("listen")}
+function speak(l){if(!SS){alert(t("nov"));return}stopSpeak();Q=l;qi=0;pi=0;if(SS.getVoices().length)next();else{const f=()=>{SS.removeEventListener("voiceschanged",f);if(Q===l)next()};SS.addEventListener("voiceschanged",f);setTimeout(()=>{if(Q===l&&pi==0&&!SS.speaking)f()},1500)}}
+function next(){if(qi>=Q.length)return stopSpeak();if(shown!==Q[qi])showArt(Q[qi]);
+ const a=ART[Q[qi]],u=[a.t[L],...a.p[L]];if(pi>=u.length){qi++;pi=0;return next()}
+ document.querySelectorAll(".art .body p").forEach((p,k)=>p.classList.toggle("rd",k==pi-1));
+ const el=document.getElementById("p"+(pi-1));if(el)el.scrollIntoView({block:"center",behavior:"smooth"});
+ const s=new SpeechSynthesisUtterance(nat(u[pi])),v=voice(),my=tok;s.lang=v?v.lang:LC[L];if(v)s.voice=v;s.rate=L?rate*.9:rate;
+ const vn=document.getElementById("vn");if(vn)vn.textContent=(v||!L)?"":t("nv2");
+ s.onend=()=>{if(my===tok){pi++;next()}};if(L&&!v){stopSpeak();return}SS.speak(s);setTimeout(setBtn,120)}
+function toggleSpeak(){if(!SS){alert(t("nov"));return}if(paused){SS.resume();paused=false}else if(SS.speaking&&Q.length){SS.pause();paused=true}else speak([shown]);setBtn()}
+function stopSpeak(){tok++;if(SS)SS.cancel();paused=false;Q=[];document.querySelectorAll(".rd").forEach(p=>p.classList.remove("rd"));setBtn();setTimeout(setBtn,80)}
+document.addEventListener("change",e=>{if(e.target.matches("[data-sp]"))rate=+e.target.value});
+// ---------- events ----------
+document.addEventListener("click",e=>{const q=s=>e.target.closest(s);let x;
+  if(x=q("#lang button")){L=+x.dataset.l;render();const m=document.getElementById("mod");if(m.classList.contains("on"))closeArt()}
+  else if(x=q("[data-d]"))go(cur+ +x.dataset.d);
+  else if(x=q("[data-g]"))go(+x.dataset.g);
+  else if(x=q(".pin")){sel=x.dataset.i;if(zoom>1)zoom=2;refreshMap()}
+  else if(x=q("[data-pi]")){sel=x.dataset.pi;if(zoom>1)zoom=2;refreshMap()}
+  else if(x=q("[data-z]")){zoom=Math.max(1,Math.min(3,zoom+ +x.dataset.z));document.getElementById("mapv").innerHTML=mapSvg()}
+  else if(x=q("[data-map]")){sel=x.dataset.map;closeArt();refreshMap();document.getElementById("maps").scrollIntoView()}
+  else if(x=q("[data-art]"))openArt(+x.dataset.art,x.dataset.play);
+  else if(x=q("[data-gf]")){gf=x.dataset.gf;document.querySelectorAll("[data-gf]").forEach(b=>b.setAttribute("aria-pressed",b===x));document.getElementById("gal").innerHTML=galleryInner()}
+  else if(x=q("[data-p]"))openPlace(x.dataset.p);
+  else if(q("[data-pp]"))toggleSpeak();
+  else if(q("[data-st]"))stopSpeak();
+  else if(q("[data-bull]"))speak(ART.map((_,i)=>i));
+  else if(x=q("[data-f]")){fs=Math.max(14,Math.min(28,fs+2*x.dataset.f));document.getElementById("art").style.setProperty("--fs",fs+"px")}
+  else if(q("[data-x]")||e.target.id=="mod")closeArt()});
+document.addEventListener("keydown",e=>{if(e.key=="Escape")closeArt();if((e.key=="Enter"||e.key==" ")&&e.target.classList&&e.target.classList.contains("pin")){e.preventDefault();e.target.dispatchEvent(new MouseEvent("click",{bubbles:true}))}});
+document.addEventListener("submit",e=>{e.preventDefault();document.getElementById("ok").textContent=t("sent");e.target.reset()});
+// ---------- scroll-spy: sub-nav (museum sections) and main nav ----------
+let io,mio;
+function spy(){
+  if(io)io.disconnect();if(mio)mio.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)document.querySelectorAll("#sub a").forEach(a=>{const on=a.dataset.s===en.target.id;a.classList.toggle("on",on);if(on)a.scrollIntoView({block:"nearest",inline:"center"})})}),{rootMargin:"-45% 0px -50% 0px"});
+  MS.forEach(m=>io.observe(document.getElementById(m[0])));
+  mio=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const id=MS.some(m=>m[0]==en.target.id)?"museum":en.target.id;document.querySelectorAll("#mnav a").forEach(a=>a.classList.toggle("on",a.dataset.m===id))}}),{rootMargin:"-45% 0px -50% 0px"});
+  ["home","about","work","museum","photos","docs","sites","oral","comm","pers","maps","research","news","pubs","gallery","contact"].forEach(i=>{const n=document.getElementById(i);if(n)mio.observe(n)});
+}
+document.addEventListener("click",e=>{const m=document.getElementById("mnav");if(e.target.closest("#menu")){const o=m.classList.toggle("open");document.getElementById("menu").setAttribute("aria-expanded",o)}else if(e.target.closest("#mnav a"))m.classList.remove("open")});
+let tx0=null;document.addEventListener("touchstart",e=>{tx0=e.target.closest(".hero")?e.touches[0].clientX:null},{passive:true});
+document.addEventListener("touchend",e=>{if(tx0===null)return;const d=e.changedTouches[0].clientX-tx0;if(Math.abs(d)>50)go(cur+(d<0?1:-1));tx0=null},{passive:true});
+render();go(0);
+</script>
+</body>
+</html>
